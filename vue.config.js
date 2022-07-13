@@ -35,6 +35,19 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
+    },
+    // 反向代理
+    proxy: {
+      // 只要axiso发请求，前面是以/abc开头的，就会被这块匹配到 就会自动帮我们反向代理
+      // 所有当这个人资接口url都是以api开头
+      '/abc': {
+        target: 'http://ihrm.itheima.net/',
+        changeOrigin: true,
+        pathRewrite: {
+          // 相当于在做replace替换操作
+          '^/abc': ''
+        }
+      }
     }
     // 因为我们真正的项目有自己的接口服务器，不用模拟数据
     // before: require('./mock/mock-server.js')
