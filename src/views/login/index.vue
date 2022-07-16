@@ -74,8 +74,10 @@ import { validMobile } from '@/utils/validate'
 export default {
   name: 'Login',
   data () {
+    // rule 规则
     const validateMobile = (rule, value, callback) => {
       validMobile(value) ? callback() : callback(new Error('手机号不符合规则'))
+      // console.log(value)
     }
     return {
       loginForm: {
@@ -117,16 +119,23 @@ export default {
         this.$refs.password.focus()
       })
     },
+
     handleLogin () {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
-            this.loading = false
-          }).catch(() => {
-            this.loading = false
-          })
+          this.$store
+            .dispatch('user/login', this.loginForm)
+            .then(() => {
+              this.$router.push({ path: this.redirect || '/' })
+              this.loading = false
+            })
+            // 拦截器
+            .catch(() => {
+              // err
+              // this.$message.error(err.message)
+              this.loading = false
+            })
         } else {
           // console.log('error submit!!')
           this.$message.error('账号密码填写错误')

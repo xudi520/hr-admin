@@ -37,7 +37,12 @@ Vue.use(ElementUI, { locale })
 
 // 注释控制台生产报错
 Vue.config.productionTip = false
-
+// 没图片显示自定义图片
+// import '@/directives'
+import * as obj from '@/directives'
+Object.keys(obj).forEach(item => {
+  Vue.directive(item, obj[item])
+})
 new Vue({
   el: '#app',
   router,
