@@ -1,11 +1,20 @@
 <template>
   <div class="dashboard-container">
     <div class="app-container">
-      <el-card>
+      <el-card
+        v-loading="isLoading"
+        style="min-height: 800px"
+        element-loading-text="拼命加载中"
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(0, 0, 0, 0.8)"
+      >
         <el-tabs>
           <el-tab-pane label="用户管理">
             <!-- 用了一个行列布局 -->
-            <TerrItem :node="titleObj"></TerrItem>
+            <TerrItem
+              :node="titleObj"
+              @delDepartment="getDepartmenstList"
+            ></TerrItem>
             <el-tree :data="data" default-expand-all>
               <template v-slot="scope">
                 <TerrItem
@@ -31,7 +40,8 @@ export default {
     return {
       // 处理好的depts
       data: [],
-      titleObj: {}
+      titleObj: {},
+      isLoading: true
     }
   },
   computed: {
@@ -43,7 +53,7 @@ export default {
   methods: {
     async getDepartmenstList () {
       const res = await getDepartmenstList()
-      console.log(res)
+      // console.log(res)
       // 数据不能直接使用 得自己加工 递归处理
       function tranferListToTerr (list, pid) {
         var list1 = []
@@ -60,6 +70,7 @@ export default {
       // this.data = res1
       // 标题
       this.titleObj = res.depts[0]
+      this.isLoading = false
     }
   }
 }

@@ -2,10 +2,10 @@ import axios from 'axios'
 import { Message } from 'element-ui'
 import { getTime } from '@/utils/auth'
 import router from '@/router'
+import store from '@/store'
 // vuex 和本地存储
 // 1.vuex数据是响应式的，实时跟新的而本地存储需要童话手动跟新
 // 2.速度vuex更块，应为vuex数据存在内存中 本地存储在文件中，获取时间man
-import store from '@/store'
 // 创建一个axios的实例
 const request = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
