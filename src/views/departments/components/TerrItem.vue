@@ -90,6 +90,7 @@
         <el-button type="primary" @click="onSubmit"> 确 定 </el-button>
       </span>
     </el-dialog>
+    <el-backtop> </el-backtop>
   </div>
 </template>
 
@@ -202,6 +203,7 @@ export default {
     handleAddClose () {
       this.$refs.addFormRef.resetFields()// 表单重置
     },
+    // 添加
     async onSubmit () {
       if (this.isEdit) {
         delete this.addDepartmentForm.children

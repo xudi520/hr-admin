@@ -9,7 +9,7 @@ import store from '@/store'
 // 创建一个axios的实例
 const request = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
-  timeout: 5000
+  timeout: 8000
 })
 
 // 添加请求拦截器

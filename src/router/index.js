@@ -100,7 +100,6 @@ const asyncRoutes = [
       meta: { title: '员工', icon: 'people' }
     }]
   },
-
   {
     path: '/permission',
     component: Layout,
@@ -139,6 +138,26 @@ const asyncRoutes = [
       name: 'Social',
       component: () => import('@/views/social/index'),
       meta: { title: '社保', icon: 'table' }
+    }]
+  },
+  {
+    path: '/import',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'Import',
+      component: () => import('@/views/import/index.vue')
+    }]
+  },
+  {
+    path: '/employee/detail/:id',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'EmployeeDetail',
+      component: () => import('@/views/employees/detail.vue')
     }]
   }
 ]

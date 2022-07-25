@@ -14,7 +14,7 @@
 //   }
 // }
 // Vue.directive('imgerror', imgerror)
-
+// 分装的img替代图片
 export const imgerror = {
   inserted (el, binding) {
     el.onerror = function () {
